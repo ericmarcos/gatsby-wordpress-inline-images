@@ -154,8 +154,12 @@ const replaceImage = async ({
   formattedImgTag.classList = classes ? classes.split(" ") : [];
   formattedImgTag.title = thisImg.attr(`title`);
   formattedImgTag.alt = thisImg.attr(`alt`);
-  if (parsedUrlData.width) formattedImgTag.width = parsedUrlData.width;
-  if (parsedUrlData.height) formattedImgTag.height = parsedUrlData.height;
+  formattedImgTag.width = thisImg.attr(`width`)
+  if (!formattedImgTag.width && parsedUrlData.width)
+    formattedImgTag.width = parsedUrlData.width
+  formattedImgTag.height = thisImg.attr(`height`)
+  if (!formattedImgTag.height && parsedUrlData.height)
+    formattedImgTag.height = parsedUrlData.height
   if (!formattedImgTag.url) return;
   const fileType = imageNode.ext; // Ignore gifs as we can't process them,
   // svgs as they are already responsive by definition
